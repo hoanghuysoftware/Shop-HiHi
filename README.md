@@ -9,6 +9,7 @@
 - [Cài Đặt](#cài-đặt)
 - [Sử Dụng](#sử-dụng)
 - [Kiến Trúc](#kiến-trúc)
+- [DB ứng dụng](#db-ứng_dụng)
 - [Công Nghệ Sử Dụng](#công-nghệ-sử-dụng)
 - [Liên Hệ](#liên-hệ)
 
@@ -38,3 +39,22 @@
    ```bash
    git clone https://github.com/hoanghuysoftware/Shop-HiHi.git
    cd repository
+### Sử Dụng
+- Truy cập ứng dụng qua trình duyệt tại địa chỉ http://localhost:8080.
+- Tìm kiếm laptop theo nhu cầu của bạn.
+- Thêm sản phẩm vào giỏ hàng và thực hiện thanh toán.
+### Kiến Trúc
+- Ứng dụng được xây dựng theo kiến trúc MVC, với các thành phần chính:
+   + Model: Đại diện cho dữ liệu và logic ứng dụng.
+   + View: Giao diện người dùng.
+   + Controller: Quản lý luồng dữ liệu giữa model và view.
+### Công Nghệ Sử Dụng
+- Backend: Spring Boot, Java
+- Frontend: ReactJS
+- Cơ sở dữ liệu: MySQL
+- Thư viện khác: Hibernate
+### Liên Hệ
+Nguyễn Hoàng Huy
+Email: hoanghuy.software@gmail.com
+
+
