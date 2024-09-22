@@ -9,13 +9,13 @@
 - [Cài Đặt](#cài-đặt)
 - [Sử Dụng](#sử-dụng)
 - [Kiến Trúc](#kiến-trúc)
-- [DB Ứng Dụng](#db-ứng-dụng)
 - [Công Nghệ Sử Dụng](#công-nghệ-sử-dụng)
 - [Liên Hệ](#liên-hệ)
+- [DB Ứng Dụng](#db-ứng-dụng)
 
 ## Giới Thiệu
 
-Ứng dụng này được phát triển với mục tiêu cung cấp trải nghiệm mua sắm trực tuyến tiện lợi cho người dùng, giúp họ dễ dàng tìm kiếm và so sánh các loại laptop phù hợp với nhu cầu của mình.
+- Ứng dụng này được phát triển với mục tiêu cung cấp trải nghiệm mua sắm trực tuyến tiện lợi cho người dùng, giúp họ dễ dàng tìm kiếm và so sánh các loại laptop phù hợp với nhu cầu của mình.
 
 ## Tính Năng
 
@@ -39,24 +39,31 @@
    ```bash
    git clone https://github.com/hoanghuysoftware/Shop-HiHi.git
    cd repository
+
 ### Sử Dụng
 - Truy cập ứng dụng qua trình duyệt tại địa chỉ http://localhost:8080.
 - Tìm kiếm laptop theo nhu cầu của bạn.
 - Thêm sản phẩm vào giỏ hàng và thực hiện thanh toán.
-### Kiến Trúc
-- Ứng dụng được xây dựng theo kiến trúc MVC, với các thành phần chính:
-   + Model: Đại diện cho dữ liệu và logic ứng dụng.
-   + View: Giao diện người dùng.
-   + Controller: Quản lý luồng dữ liệu giữa model và view.
-### DB Ứng Dụng
-![testDB](https://github.com/user-attachments/assets/6d003446-2d87-4e9c-abf2-0a5330bd6fe9)
+
+## Kiến Trúc
+
+Ứng dụng được xây dựng theo kiến trúc MVC (Model-View-Controller), trong đó:
+
+- **Backend (BE)**: Sử dụng Spring Boot để xử lý logic ứng dụng và trả về API cho frontend. Backend quản lý dữ liệu, xác thực người dùng và xử lý các yêu cầu từ frontend.
+- **Frontend (FE)**: Sử dụng ReactJS để tạo giao diện người dùng. Frontend gửi các yêu cầu đến API và nhận dữ liệu từ backend để hiển thị cho người dùng.
+
+
 ### Công Nghệ Sử Dụng
 - Backend: Spring Boot, Java
 - Frontend: ReactJS
 - Cơ sở dữ liệu: MySQL
 - Thư viện khác: Hibernate
+
 ### Liên Hệ
-Nguyễn Hoàng Huy
-Email: hoanghuy.software@gmail.com
+- Nguyễn Hoàng Huy
+- Email: hoanghuy.software@gmail.com
+
+### DB Ứng Dụng
+![testDB](https://github.com/user-attachments/assets/6d003446-2d87-4e9c-abf2-0a5330bd6fe9)
 
 
