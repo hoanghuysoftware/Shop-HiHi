@@ -9,7 +9,7 @@
 - [Cài Đặt](#cài-đặt)
 - [Sử Dụng](#sử-dụng)
 - [Kiến Trúc](#kiến-trúc)
-- [DB ứng dụng](#db-ứng_dụng)
+- [DB Ứng Dụng](#db-ứng-dụng)
 - [Công Nghệ Sử Dụng](#công-nghệ-sử-dụng)
 - [Liên Hệ](#liên-hệ)
 
@@ -48,6 +48,8 @@
    + Model: Đại diện cho dữ liệu và logic ứng dụng.
    + View: Giao diện người dùng.
    + Controller: Quản lý luồng dữ liệu giữa model và view.
+### DB Ứng Dụng
+![testDB](https://github.com/user-attachments/assets/6d003446-2d87-4e9c-abf2-0a5330bd6fe9)
 ### Công Nghệ Sử Dụng
 - Backend: Spring Boot, Java
 - Frontend: ReactJS
