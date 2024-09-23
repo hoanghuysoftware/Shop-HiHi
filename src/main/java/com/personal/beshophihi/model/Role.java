@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @Builder
@@ -19,6 +22,6 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private RoleName roleName;
 
-    @OneToOne(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private User user;
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<User> users = new ArrayList<>();
 }

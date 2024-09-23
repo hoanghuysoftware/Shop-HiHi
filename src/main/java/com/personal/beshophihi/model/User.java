@@ -33,10 +33,6 @@ public class User {
     private boolean isActive;
 
     @OneToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
-
-    @OneToOne
     @JoinColumn(name = "shopping_cart_id", referencedColumnName = "id")
     private ShoppingCart shoppingCart;
 
@@ -45,6 +41,10 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<StockReceipt> stockReceipts = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private Role role;
 
 
 }
