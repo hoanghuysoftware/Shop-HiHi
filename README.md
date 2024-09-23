@@ -64,6 +64,7 @@
 - Email: hoanghuy.software@gmail.com
 
 ### DB Ứng Dụng
-![testDB](https://github.com/user-attachments/assets/6d003446-2d87-4e9c-abf2-0a5330bd6fe9)
+![DB_v2](https://github.com/user-attachments/assets/5e724b6e-01fe-4519-8904-6d2001631102)
+
 
 
