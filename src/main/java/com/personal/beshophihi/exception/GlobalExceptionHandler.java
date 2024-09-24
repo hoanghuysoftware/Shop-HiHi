@@ -26,4 +26,24 @@ public class GlobalExceptionHandler {
                         .message("Entity already exists.")
                         .build());
     }
+
+    @ExceptionHandler(DateException.class)
+    public ResponseEntity<ExceptionMessage> handleDateException() {
+        return ResponseEntity
+                .status(400)
+                .body(ExceptionMessage.builder()
+                        .code(400)
+                        .message("Invalid date input.")
+                        .build());
+    }
+
+    @ExceptionHandler(InputValidException.class)
+    public ResponseEntity<ExceptionMessage> handleInputValidException() {
+        return ResponseEntity
+                .status(400)
+                .body(ExceptionMessage.builder()
+                        .code(400)
+                        .message("Invalid input.")
+                        .build());
+    }
 }
