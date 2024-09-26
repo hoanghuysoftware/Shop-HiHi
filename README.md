@@ -84,7 +84,7 @@
 
 
 - **Ngày 26/05/2024**
-  - Cập nhật APIs nhập hàng và lưu ảnh thẳng vào DB dưới dạng byte[](cách xấu nhất :( nhưng đơn giản nhất).
+  - Cập nhật APIs nhập hàng và lưu ảnh thẳng vào DB dưới dạng byte[] (cách xấu nhất :( nhưng đơn giản nhất).
   - Thực hiện các APIs liên quan đến User, Role, Address, Cart.
   - Thực hiện APIs thêm sản phẩm vào giỏ hàng.
 
