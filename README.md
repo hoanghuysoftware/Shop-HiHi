@@ -12,6 +12,7 @@
 - [Công Nghệ Sử Dụng](#công-nghệ-sử-dụng)
 - [Liên Hệ](#liên-hệ)
 - [DB Ứng Dụng](#db-ứng-dụng)
+- [Quá Trình Thực Hiện Dự Án](#quá-trình-thực-hiện-dự-án)
 
 ## Giới Thiệu
 
@@ -65,6 +66,27 @@
 
 ### DB Ứng Dụng
 ![DB_v2](https://github.com/user-attachments/assets/5e724b6e-01fe-4519-8904-6d2001631102)
+
+### Quá Trình Thực Hiện Dự Án
+- **Ngày 23/09/2024:**
+  - Khởi tạo dự án.
+  - Viết APIs cho Brand và Type Product.
+
+
+- **Ngày 24/09/2024:**
+  - Viết APIs cho Discount, Supplier và nhập hàng.
+
+
+- **Ngày 25/09/2024**
+  - Tiếp tục hoàn thiện và sửa logic khi nhập hàng.
+  - Nhập Product cơ bản (active = false).
+  - Chưa thêm ảnh ngay khi nhập sản phẩm, hình ảnh sẽ được cập nhật sau và thuộc tính active sẽ true.
+
+
+- **Ngày 26/05/2024**
+  - Cập nhật APIs nhập hàng và lưu ảnh thẳng vào DB dưới dạng byte[](cách xấu nhất :( nhưng đơn giản nhất).
+  - Thực hiện các APIs liên quan đến User, Role, Address, Cart.
+  - Thực hiện APIs thêm sản phẩm vào giỏ hàng.
 
 
 
