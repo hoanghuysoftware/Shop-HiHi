@@ -1,5 +1,6 @@
 package com.personal.beshophihi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +30,8 @@ public class Product {
     private BigDecimal salePrice;
     private int availableQuantity;
     private boolean isActive;
+    @Lob
+    private byte[] thumbnail;
 
     @ManyToOne
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
@@ -43,12 +46,15 @@ public class Product {
     private List<Image> images = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<StockReceiptDetail> stockReceiptDetails = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<OrderDetail> orderDetails = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<ShoppingCartDetail> shoppingCartDetails  = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

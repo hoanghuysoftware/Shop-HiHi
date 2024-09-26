@@ -3,6 +3,8 @@ package com.personal.beshophihi.controller;
 import com.personal.beshophihi.dto.ProductDTO;
 import com.personal.beshophihi.dto.ProductDTO2;
 import com.personal.beshophihi.dto.ResponseMessage;
+import com.personal.beshophihi.dto.StockReceiptDTO;
+import com.personal.beshophihi.model.StockReceipt;
 import com.personal.beshophihi.service.StockReceiptService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -33,22 +35,25 @@ public class StockReceiptController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ResponseMessage> doGetStockReceiptById(@PathVariable Long id) {
+        StockReceipt stockReceipt = stockReceiptService.getStockReceipt(id);
+
         return new ResponseEntity<>(
                 ResponseMessage.builder()
                         .status("TRUE")
                         .message("Fetched stock receipt with ID: " + id + " successfully.")
-                        .data(stockReceiptService.getStockReceipt(id))
+                        .data(stockReceipt)
                         .build(),
                 HttpStatus.OK);
     }
 
-    @PostMapping(consumes = {"multipart/form-data"})
-    public ResponseEntity<ResponseMessage> doCreateStockReceipt(@ModelAttribute ProductDTO productDTO) {
+    @PostMapping()
+    public ResponseEntity<ResponseMessage> doCreateStockReceipt(@RequestBody StockReceiptDTO stockReceiptDTO) {
+        StockReceipt stockReceipt = stockReceiptService.addStockReceipt(stockReceiptDTO);
         return new ResponseEntity<>(
                 ResponseMessage.builder()
                         .status("TRUE")
                         .message("Stock receipt created successfully.")
-                        .data(productDTO)
+                        .data(stockReceipt)
                         .build(),
                 HttpStatus.CREATED);
     }

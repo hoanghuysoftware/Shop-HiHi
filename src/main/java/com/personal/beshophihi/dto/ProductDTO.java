@@ -23,12 +23,6 @@ public class ProductDTO {
     private String card;
     private String screen;
 
-    @JsonProperty("sale-price")
-    private BigDecimal salePrice;
-
-    @JsonProperty("available-quantity")
-    private int availableQuantity;
-
     @JsonProperty("brand-id")
     private Long brandID;
 

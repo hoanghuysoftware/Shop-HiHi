@@ -5,20 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StockReceiptDTO {
-    @JsonProperty("supplier-id")
-    private Long idSupplier;
-    private Long idUser;
-    private Date receptDate = new Date();
-    private List<StockReceiptDetailDTO> stockReceiptDetailDTOS = new ArrayList<>(); // ds chi tiet nhap hang
-
+public class ImageDTO {
+    @JsonProperty("files")
+    private List<MultipartFile> images = new ArrayList<>();
 }

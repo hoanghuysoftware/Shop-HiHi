@@ -52,8 +52,12 @@ public class StockReceiptServiceIMPL implements StockReceiptService {
 
         List<StockReceiptDetail> stockReceiptDetails = new ArrayList<>();
         for(StockReceiptDetailDTO stockDetailItem: stockReceiptDTO.getStockReceiptDetailDTOS()){
+            Product product = createNewProduct(stockDetailItem.getProductDTO());
+            product.setAvailableQuantity(product.getAvailableQuantity() + stockDetailItem.getQuantity());
+            product.setSalePrice(stockDetailItem.getUnitPrice());
+
             StockReceiptDetail stockReceiptDetail = StockReceiptDetail.builder()
-                    .product(createNewProduct(stockDetailItem.getProductDTO()))
+                    .product(product)
                     .stockReceipt(stockReceipt)
                     .quantity(stockDetailItem.getQuantity())
                     .unitPrice(stockDetailItem.getUnitPrice())
@@ -63,7 +67,7 @@ public class StockReceiptServiceIMPL implements StockReceiptService {
             stockReceiptDetails.add(stockReceiptDetail);
         }
         stockReceipt.setStockReceiptDetails(stockReceiptDetails);
-        return null;
+        return stockReceiptRepo.save(stockReceipt);
     }
 
     private Product createNewProduct(ProductDTO productDTO){
@@ -84,32 +88,16 @@ public class StockReceiptServiceIMPL implements StockReceiptService {
                 .CPU(productDTO.getCpu())
                 .RAM(productDTO.getRam())
                 .ROM(productDTO.getRom())
-                .availableQuantity(productDTO.getAvailableQuantity())
                 .card(productDTO.getCard())
                 .description(productDTO.getDescription())
                 .isActive(true)
                 .name(productDTO.getName())
-                .salePrice(productDTO.getSalePrice())
                 .screen(productDTO.getScreen())
                 .brand(brand)
                 .discount(discount)
                 .typeProducts(typeProducts)
                 .build();
 
-        List<Image> imageList = new ArrayList<>();
-        for (MultipartFile file: productDTO.getFilesImages()){
-            try {
-                Image image = Image.builder()
-                        .product(product)
-                        .dataImage(file.getBytes())
-                        .build();
-                imageList.add(image);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        product.setImages(imageList);
         return productRepo.save(product);
     }
 

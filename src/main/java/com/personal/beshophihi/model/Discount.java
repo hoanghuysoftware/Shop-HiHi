@@ -1,6 +1,7 @@
 package com.personal.beshophihi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -36,5 +37,6 @@ public class Discount {
     private Date endDate;
 
     @OneToMany(mappedBy = "discount", cascade = CascadeType.ALL, fetch =  FetchType.LAZY)
+    @JsonIgnore
     private List<Product> products = new ArrayList<>();
 }
