@@ -1,5 +1,6 @@
 package com.personal.beshophihi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.personal.beshophihi.utils.RoleName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,5 +24,6 @@ public class Role {
     private RoleName roleName;
 
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<User> users = new ArrayList<>();
 }
