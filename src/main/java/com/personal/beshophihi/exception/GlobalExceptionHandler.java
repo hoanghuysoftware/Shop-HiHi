@@ -8,42 +8,42 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(EntityNotFound.class)
-    public ResponseEntity<ExceptionMessage> handleEntityNotFoundException() {
+    public ResponseEntity<ExceptionMessage> handleEntityNotFoundException(EntityNotFound e) {
         return ResponseEntity
                 .status(404)
                 .body(ExceptionMessage.builder()
                         .code(404)
-                        .message("Not Found Entity")
+                        .message(e.getMessage())
                         .build());
     }
 
     @ExceptionHandler(ExistsEntityException.class)
-    public ResponseEntity<ExceptionMessage> handleExistsEntityException() {
+    public ResponseEntity<ExceptionMessage> handleExistsEntityException(ExistsEntityException e) {
         return ResponseEntity
                 .status(409)
                 .body(ExceptionMessage.builder()
                         .code(409)
-                        .message("Entity already exists.")
+                        .message(e.getMessage())
                         .build());
     }
 
     @ExceptionHandler(DateException.class)
-    public ResponseEntity<ExceptionMessage> handleDateException() {
+    public ResponseEntity<ExceptionMessage> handleDateException(DateException e) {
         return ResponseEntity
                 .status(400)
                 .body(ExceptionMessage.builder()
                         .code(400)
-                        .message("Invalid date input.")
+                        .message(e.getMessage())
                         .build());
     }
 
     @ExceptionHandler(InputValidException.class)
-    public ResponseEntity<ExceptionMessage> handleInputValidException() {
+    public ResponseEntity<ExceptionMessage> handleInputValidException(InputValidException e) {
         return ResponseEntity
                 .status(400)
                 .body(ExceptionMessage.builder()
                         .code(400)
-                        .message("Invalid input.")
+                        .message(e.getMessage())
                         .build());
     }
 }

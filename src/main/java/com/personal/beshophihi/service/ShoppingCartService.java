@@ -12,5 +12,5 @@ public interface ShoppingCartService {
 
     ShoppingCart updateQuantityProductInCart(Long idCart, ShoppingCartDetailDTO shoppingCartDetailDTO);
 
-    void removeProductFromCart(Long idCart, ShoppingCartDetailDTO shoppingCartDetailDTO);
+    boolean removeProductFromCart(Long idCart, Long idProduct);
 }

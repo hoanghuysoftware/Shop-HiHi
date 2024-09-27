@@ -16,6 +16,7 @@ import com.personal.beshophihi.utils.Gender;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -50,9 +51,6 @@ public class UserServiceIMPL implements UserService {
                 () -> new EntityNotFound("Not found role with id: "+ userDTO.getRoleId())
         );
 
-        ShoppingCart shoppingCart = new ShoppingCart();
-
-
         List<Address> addressList = new ArrayList<>();
 
         User user = User.builder()
@@ -65,14 +63,19 @@ public class UserServiceIMPL implements UserService {
                 .phoneNumber(userDTO.getPhoneNumber())
                 .username(userDTO.getUsername())
                 .role(role)
-                .shoppingCart(shoppingCart)
                 .build();
         Address address = Address.builder()
                 .nameAddress(userDTO.getAddress())
                 .user(user)
                 .build();
         addressList.add(address);
+        ShoppingCart shoppingCart = ShoppingCart.builder()
+                .user(user)
+                .totalPrice(BigDecimal.valueOf(0.0))
+                .totalQuantity(0)
+                .build();
 
+        user.setShoppingCart(shoppingCart);
         user.setAddresses(addressList);
         return userRepo.save(user);
     }

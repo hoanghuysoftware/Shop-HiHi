@@ -38,5 +38,27 @@ public class ShoppingCartController {
                 HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ResponseMessage> doDeleteShoppingCart(@PathVariable Long id,
+                                                                @RequestParam("product")Long idProduct) {
+        boolean checkDelete = shoppingCartService.removeProductFromCart(id, idProduct);
+        if(checkDelete){
+            return new ResponseEntity<>(
+                    ResponseMessage.builder()
+                            .status("TRUE")
+                            .message("Shopping cart with ID: " + id + " deleted successfully.")
+                            .build(),
+                    HttpStatus.NO_CONTENT);
+        }else {
+            return new ResponseEntity<>(
+                    ResponseMessage.builder()
+                            .status("FAILED")
+                            .message("Shopping cart with ID: " + id + " deleted NOT successfully.")
+                            .build(),
+                    HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
 
 }
