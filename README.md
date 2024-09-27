@@ -83,10 +83,14 @@
   - Chưa thêm ảnh ngay khi nhập sản phẩm, hình ảnh sẽ được cập nhật sau và thuộc tính active sẽ true.
 
 
-- **Ngày 26/05/2024**
+- **Ngày 26/09/2024**
   - Cập nhật APIs nhập hàng và lưu ảnh thẳng vào DB dưới dạng byte[] (cách xấu nhất :( nhưng đơn giản nhất).
   - Thực hiện các APIs liên quan đến User, Role, Address, Cart.
   - Thực hiện APIs thêm sản phẩm vào giỏ hàng.
+
+
+- **Ngày 27/09/2024**
+  - Hoàn thiện APIs cho giỏ hàng(thêm sản phẩm, cập nhật số lượng, xóa sản phẩm).
 
 
 
