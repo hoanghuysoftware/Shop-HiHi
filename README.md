@@ -93,4 +93,9 @@
   - Hoàn thiện APIs cho giỏ hàng(thêm sản phẩm, cập nhật số lượng, xóa sản phẩm).
 
 
+- **Ngày 29/09/2024**
+  - Triển khai APIs cho quá trình đặt hàng và đánh giá sản phẩm trong đơn hàng.
+  - Đã hoàn thành cơ bản, đảm bảo có thể đáp ứng nhu cầu cơ bản.
+  - Chuyển sang phát triển FrontEnd ( https://github.com/hoanghuysoftware/Shop-HiHi-FrontEnd.git )
+
 
