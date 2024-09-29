@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,11 +35,15 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
-    @JsonFormat(pattern = "MM-dd-yyyy")
-    private Date orderDate;
+    @JsonFormat(pattern = "MM-dd-yyyy HH:mm:ss")
+    private LocalDateTime orderDate;
 
-    @JsonFormat(pattern = "MM-dd-yyyy")
-    private Date updateDate;
+    @JsonFormat(pattern = "MM-dd-yyyy HH:mm:ss")
+    private LocalDateTime updateDate;
+    @PreUpdate
+    protected void onUpdate() {
+        updateDate = LocalDateTime.now();
+    }
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Review> reviews = new ArrayList<>();
