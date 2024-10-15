@@ -19,6 +19,11 @@ public class BrandServiceIMPL implements BrandService {
 
     @Override
     public List<Brand> getAllBrands() {
+        return brandRepo.findAll();
+    }
+
+    @Override
+    public List<Brand> getAllBrandActive() {
         return brandRepo.getBrandByActiveTrue();
     }
 
@@ -47,6 +52,7 @@ public class BrandServiceIMPL implements BrandService {
         Brand oldBrand = brandRepo.findById(id).orElseThrow(
                 () -> new EntityNotFound("Not found brand by id: " + id));
         oldBrand.setName(brandDTO.getBrandName());
+        oldBrand.setActive(true);
         return brandRepo.save(oldBrand);
     }
 

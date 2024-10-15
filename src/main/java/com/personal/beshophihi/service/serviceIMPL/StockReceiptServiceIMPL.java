@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,9 +46,11 @@ public class StockReceiptServiceIMPL implements StockReceiptService {
         Supplier supplier = supplierRepo.findById(stockReceiptDTO.getIdSupplier()).orElseThrow(
                 () -> new EntityNotFound("Not found supplier with id: " + stockReceiptDTO.getIdSupplier())
         );
+        BigDecimal totalStock = new BigDecimal(0);
         StockReceipt stockReceipt = StockReceipt.builder()
                 .supplier(supplier)
                 .receiptDate(new Date())
+                .totalPrice(totalStock)
                 .build();
 
         List<StockReceiptDetail> stockReceiptDetails = new ArrayList<>();
@@ -61,9 +64,9 @@ public class StockReceiptServiceIMPL implements StockReceiptService {
                     .stockReceipt(stockReceipt)
                     .quantity(stockDetailItem.getQuantity())
                     .unitPrice(stockDetailItem.getUnitPrice())
-                    .totalPrice(stockDetailItem.getTotalPrice())
+                    .totalPrice(stockDetailItem.getUnitPrice().multiply(BigDecimal.valueOf(stockDetailItem.getQuantity())))
                     .build();
-
+            stockReceipt.setTotalPrice(stockReceipt.getTotalPrice().add(stockReceiptDetail.getTotalPrice()));
             stockReceiptDetails.add(stockReceiptDetail);
         }
         stockReceipt.setStockReceiptDetails(stockReceiptDetails);
@@ -90,7 +93,7 @@ public class StockReceiptServiceIMPL implements StockReceiptService {
                 .ROM(productDTO.getRom())
                 .card(productDTO.getCard())
                 .description(productDTO.getDescription())
-                .isActive(true)
+                .isActive(false)
                 .name(productDTO.getName())
                 .screen(productDTO.getScreen())
                 .brand(brand)

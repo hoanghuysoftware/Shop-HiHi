@@ -74,7 +74,7 @@ public class DiscountServiceIMPL implements DiscountService {
         Discount discount = discountRepo.findById(id).orElseThrow(
                 () -> new EntityNotFound("Not found discount by id: " + id)
         );
-        checkBasicException(discountDTO);
+//        checkBasicException(discountDTO);
         discount.setName(discountDTO.getName());
         discount.setAmount(discountDTO.getAmount());
         discount.setStartDate(discountDTO.getStartDate());

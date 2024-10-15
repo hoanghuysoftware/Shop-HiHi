@@ -18,10 +18,10 @@ public class DiscountDTO {
     private int amount;
 
     @JsonProperty("start-date")
-    @JsonFormat(pattern = "MM-dd-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
-    @JsonFormat(pattern = "MM-dd-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @JsonProperty("end-date")
     private Date endDate;
 }

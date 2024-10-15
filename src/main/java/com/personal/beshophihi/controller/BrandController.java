@@ -14,13 +14,27 @@ import org.springframework.web.bind.annotation.*;
 public class BrandController {
     private final BrandService brandService;
 
+    @GetMapping("/all")
+    public ResponseEntity<ResponseMessage> getNotActive(){
+        return new ResponseEntity<>(
+                ResponseMessage.builder()
+                        .status("TRUE")
+                        .code(HttpStatus.OK.value())
+                        .message("Get all brand contain brand not active")
+                        .data(brandService.getAllBrands())
+                        .build(),
+                HttpStatus.OK
+        );
+    }
+
     @GetMapping
     public ResponseEntity<ResponseMessage> doGetAllBrands() {
         return new ResponseEntity<>(
                 ResponseMessage.builder()
                         .status("TRUE")
+                        .code(HttpStatus.OK.value())
                         .message("Fetched all brands successfully !")
-                        .data(brandService.getAllBrands())
+                        .data(brandService.getAllBrandActive())
                         .build(),
                 HttpStatus.OK);
     }
@@ -30,6 +44,7 @@ public class BrandController {
         return new ResponseEntity<>(
                 ResponseMessage.builder()
                         .status("TRUE")
+                        .code(HttpStatus.OK.value())
                         .message("Fetched brand with ID: " + id + " successfully.")
                         .data(brandService.getBrandById(id))
                         .build(),
@@ -41,6 +56,7 @@ public class BrandController {
         return new ResponseEntity<>(
                 ResponseMessage.builder()
                         .status("TRUE")
+                        .code(HttpStatus.CREATED.value())
                         .message("Brand created successfully.")
                         .data(brandService.createBrand(brandDTO))
                         .build(),
@@ -52,6 +68,7 @@ public class BrandController {
         return new ResponseEntity<>(
                 ResponseMessage.builder()
                         .status("TRUE")
+                        .code(HttpStatus.OK.value())
                         .message("Brand with ID: " + id + " updated successfully.")
                         .data(brandService.updateBrand(id, brandDTO))
                         .build(),
@@ -63,6 +80,7 @@ public class BrandController {
         return new ResponseEntity<>(
                 ResponseMessage.builder()
                         .status("TRUE")
+                        .code(HttpStatus.OK.value())
                         .message("Brand with ID: " + id + " active updated successfully.")
                         .data(brandService.updateActive(id, active))
                         .build(),
@@ -75,6 +93,7 @@ public class BrandController {
         return new ResponseEntity<>(
                 ResponseMessage.builder()
                         .status("TRUE")
+                        .code(HttpStatus.OK.value())
                         .message("Brand with ID: " + id + " deleted successfully.")
                         .data("")
                         .build(),
