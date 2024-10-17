@@ -42,7 +42,8 @@ public class Product {
     private Discount discount;
 
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Image> images = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -61,6 +62,7 @@ public class Product {
     private List<Review> reviews = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinTable(name = "product_type",
             joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "type_product_id", referencedColumnName = "id"))

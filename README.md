@@ -98,7 +98,11 @@
   - Đã hoàn thành cơ bản, đảm bảo có thể đáp ứng nhu cầu cơ bản.
   - Chuyển sang phát triển FrontEnd ( https://github.com/hoanghuysoftware/Shop-HiHi-FrontEnd.git )
 
-- **Ngày 25/10/2024**
+- **Ngày 15/10/2024**
   - Thêm API còn thiếu cho Product
   - Fix lại các API liên quan đến nhập hàng
   - Fix lại kiểu API trả về cho FrontEnd.
+  
+- **Ngày 17/10/2024**
+  - Cập nhật logic thêm đơn hàng và update đơn hàng
+  

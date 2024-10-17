@@ -101,9 +101,14 @@ public class ShoppingCartServiceIMPL implements ShoppingCartService {
 //       Handle when product existed in cart
         for (ShoppingCartDetail item : shoppingCartDetailList) {
             if (item.getProduct().getId().equals(product.getId())) {
+                // Loai bo gia va sl cua product trong gio hang
+                shoppingCart.setTotalPrice(shoppingCart.getTotalPrice().subtract(item.getTotalPrice()));
+                shoppingCart.setTotalQuantity(shoppingCart.getTotalQuantity() - item.getQuantity());
+
                 // Cap nhat so luong va tong gia cua san pham trong detail
-                item.setQuantity(item.getQuantity() + shoppingCartDetailDTO.getQuantity());
-                item.setTotalPrice(item.getTotalPrice().add(totalPrice));
+                item.setQuantity(shoppingCartDetailDTO.getQuantity());
+                item.setTotalPrice(totalPrice);
+
                 // Cap nhat gia va so luong gio hang
                 shoppingCart.setTotalPrice(shoppingCart.getTotalPrice().add(totalPrice));
                 shoppingCart.setTotalQuantity(shoppingCart.getTotalQuantity() + shoppingCartDetailDTO.getQuantity());

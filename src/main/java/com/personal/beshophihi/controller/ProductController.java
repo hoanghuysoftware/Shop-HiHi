@@ -5,10 +5,9 @@ import com.personal.beshophihi.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/product")
@@ -16,7 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController {
     private final ProductService productService;
 
-    @GetMapping("/not-active")
+    @GetMapping("/public")
+    public ResponseEntity<ResponseMessage> doGetProductPublic(@RequestParam("brand-id") Long idBrand,
+                                                              @RequestParam(defaultValue = "0") int page,
+                                                              @RequestParam(defaultValue = "10") int size){
+        return new ResponseEntity<>(
+                ResponseMessage.builder()
+                        .status("TRUE")
+                        .code(HttpStatus.OK.value())
+                        .message("Get all product public successfully !")
+                        .totalPage(productService.getProductPublic(page, size, idBrand).getTotalPages())
+                        .data(productService.getProductPublic(page, size, idBrand).getContent())
+                        .build(),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/not-image")
     public ResponseEntity<ResponseMessage> doGetAllNotActive () {
         return new ResponseEntity<>(
                 ResponseMessage.builder()
