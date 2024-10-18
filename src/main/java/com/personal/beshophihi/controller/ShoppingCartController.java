@@ -38,6 +38,19 @@ public class ShoppingCartController {
                 HttpStatus.CREATED);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseMessage> updateProductIntoCart(@PathVariable Long id,
+                                                                 @RequestBody ShoppingCartDetailDTO shoppingCartDetailDTO) {
+        return new ResponseEntity<>(
+                ResponseMessage.builder()
+                        .status("TRUE")
+                        .code(HttpStatus.OK.value())
+                        .message("Shopping cart update successfully.")
+                        .data(shoppingCartService.updateQuantityProductInCart(id, shoppingCartDetailDTO))
+                        .build(),
+                HttpStatus.CREATED);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<ResponseMessage> doDeleteShoppingCart(@PathVariable Long id,
                                                                 @RequestParam("product")Long idProduct) {

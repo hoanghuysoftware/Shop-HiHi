@@ -64,6 +64,7 @@ public class ShoppingCartServiceIMPL implements ShoppingCartService {
         boolean productExists = false;
         for (ShoppingCartDetail item : shoppingCartDetailList) {
             if (item.getProduct().getId().equals(product.getId())) {
+                shoppingCartDetailDTO.setQuantity(item.getQuantity() + 1);
                 productExists = true;
                 break;
             }
