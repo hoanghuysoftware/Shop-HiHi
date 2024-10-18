@@ -105,5 +105,9 @@
   
 - **Ngày 17/10/2024**
   - Cập nhật logic thêm đơn hàng và update đơn hàng
+ 
+- **Ngày 18/10/2024**
+  - Cập nhật thêm API cho xử lý update số lượng sản phẩm trong giỏ hàng
+  - Fix lại xử lý khi thêm sản phẩm đã có trong giỏ hàng
   
 
