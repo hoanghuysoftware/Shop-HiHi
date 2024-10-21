@@ -18,6 +18,7 @@ import java.util.List;
 public class OrderDTO {
     private String note;
     private String paymentMethod;
+    private Long deliveryAddressID;
     private BigDecimal totalPrice;
     private Date updateDate;
     private Long statusId;

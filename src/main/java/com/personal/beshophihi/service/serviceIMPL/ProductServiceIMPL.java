@@ -19,6 +19,12 @@ public class ProductServiceIMPL implements ProductService {
     private final ProductRepo productRepo;
 
     @Override
+    public Page<Product> searchProduct(int page, int size, String keyword) {
+        Pageable pageable = PageRequest.of(page, size);
+        return productRepo.getProductsByNameContains(keyword, pageable);
+    }
+
+    @Override
     public Page<Product> getProductPublic(int page, int size, Long idBrand) {
         Pageable pageable = PageRequest.of(page, size);
         return productRepo.getProductsByBrand(idBrand, pageable);

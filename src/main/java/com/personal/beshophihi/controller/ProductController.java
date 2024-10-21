@@ -76,4 +76,20 @@ public class ProductController {
                         .build(),
                 HttpStatus.OK);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<ResponseMessage> doSearch (@RequestParam("keyword") String keyword,
+                                                     @RequestParam(defaultValue = "0") int page,
+                                                     @RequestParam(defaultValue = "10") int size) {
+        return new ResponseEntity<>(
+                ResponseMessage
+                        .builder()
+                        .status("TRUE")
+                        .code(HttpStatus.OK.value())
+                        .message("Search product successfully !")
+                        .data(productService.searchProduct(page, size, keyword))
+                        .build()
+                , HttpStatus.OK);
+
+    }
 }

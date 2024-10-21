@@ -20,4 +20,6 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
 
     @Query("select p from Product p where p.isActive=false")
     List<Product> getAllByActiveIsFalse();
+
+    Page<Product> getProductsByNameContains(String name, Pageable pageable);
 }

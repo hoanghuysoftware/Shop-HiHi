@@ -27,7 +27,7 @@ public class User {
     private String phoneNumber;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @JsonFormat(pattern = "MM-dd-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
     private String username;
     private String password;

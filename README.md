@@ -110,4 +110,9 @@
   - Cập nhật thêm API cho xử lý update số lượng sản phẩm trong giỏ hàng
   - Fix lại xử lý khi thêm sản phẩm đã có trong giỏ hàng
   
+- **Ngày 21/10/2024**
+  - Cập nhật thêm API cho xử lý tìm kiếm sản phẩm theo tên sản phẩm
+  - Fix lại xử lý khi thêm sản phẩm đã có trong giỏ hàng
+  - Update logic thanh toán trực tiếp
+  - Update lại API liên quan đến user.
 

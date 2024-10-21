@@ -35,14 +35,25 @@ public class AddressController {
                         .build(),
                 HttpStatus.OK);
     }
+    @GetMapping("/user/{id}")
+    public ResponseEntity<ResponseMessage> doGetAddressByUserId(@PathVariable Long id) {
+        return new ResponseEntity<>(
+                ResponseMessage.builder()
+                        .status("TRUE")
+                        .message("Fetched address with user ID: " + id + " successfully.")
+                        .data(addressService.getAddressByUserId(id))
+                        .build(),
+                HttpStatus.OK);
+    }
 
-    @PostMapping
-    public ResponseEntity<ResponseMessage> doCreateAddress(@RequestBody AddressDTO addressDTO) {
+    @PostMapping("/{idUser}")
+    public ResponseEntity<ResponseMessage> doCreateAddress(@PathVariable Long idUser,
+                                                           @RequestBody AddressDTO addressDTO) {
         return new ResponseEntity<>(
                 ResponseMessage.builder()
                         .status("TRUE")
                         .message("Address created successfully.")
-                        .data(addressService.createAddress(addressDTO))
+                        .data(addressService.createAddress(idUser,addressDTO))
                         .build(),
                 HttpStatus.CREATED);
     }

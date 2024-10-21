@@ -1,6 +1,7 @@
 package com.personal.beshophihi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.personal.beshophihi.utils.PaymentMethod;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
@@ -28,6 +29,7 @@ public class Order {
     private Long id;
     private String note;
     private boolean statusPayment;
+    private String deliveryAddress;
     @NotNull
     @Min(value = 0, message = "Price must be greater than or equal to 0")
     private BigDecimal totalPrice;
@@ -35,10 +37,10 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
-    @JsonFormat(pattern = "MM-dd-yyyy HH:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime orderDate;
 
-    @JsonFormat(pattern = "MM-dd-yyyy HH:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime updateDate;
     @PreUpdate
     protected void onUpdate() {
@@ -46,6 +48,7 @@ public class Order {
     }
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Review> reviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

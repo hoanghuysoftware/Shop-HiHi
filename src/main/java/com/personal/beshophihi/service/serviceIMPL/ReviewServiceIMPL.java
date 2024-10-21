@@ -10,6 +10,9 @@ import com.personal.beshophihi.repository.ReviewRepo;
 import com.personal.beshophihi.service.OrderService;
 import com.personal.beshophihi.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,8 +26,12 @@ public class ReviewServiceIMPL implements ReviewService {
     private final OrderService orderService;
 
     @Override
-    public List<Review> getReviewsByProductId(Long idProduct) { // Pagination is needed here
-        return reviewRepo.getReviewsByProductId(idProduct);
+    public List<ReviewDTO> getReviewsByProductId(Long idProduct) { // Pagination is needed here
+        List<Review> reviewList = reviewRepo.getReviewsByProductId(idProduct);
+        return reviewList
+                .stream()
+                .map(ReviewDTO::convertToDTO)
+                .toList();
     }
 
     @Override
@@ -38,11 +45,17 @@ public class ReviewServiceIMPL implements ReviewService {
 
         Review review = Review.builder()
                 .content(reviewDTO.getContent())
+                .rating(reviewDTO.getRating())
                 .dateTime(LocalDateTime.now())
                 .order(order)
                 .product(product)
                 .build();
 
         return reviewRepo.save(review);
+    }
+
+    @Override
+    public List<Long> getProductExistReviewByOrderId(Long orderId) {
+        return reviewRepo.getProductExistedReview(orderId);
     }
 }

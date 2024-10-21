@@ -7,6 +7,7 @@ import com.personal.beshophihi.model.*;
 import com.personal.beshophihi.repository.OrderDetailRepo;
 import com.personal.beshophihi.repository.OrderRepo;
 import com.personal.beshophihi.repository.ProductRepo;
+import com.personal.beshophihi.service.AddressService;
 import com.personal.beshophihi.service.OrderService;
 import com.personal.beshophihi.service.StatusService;
 import com.personal.beshophihi.service.UserService;
@@ -28,6 +29,7 @@ public class OrderServiceIMPL implements OrderService {
     private final UserService userService;
     private final ProductRepo productRepo;
     private final StatusService statusService;
+    private final AddressService addressService;
 
     @Override
     public List<Order> getAllOrders() { // need div pages
@@ -52,9 +54,11 @@ public class OrderServiceIMPL implements OrderService {
         Status status = statusService.getStatusById(orderDTO.getStatusId());
         User user = userService.getUserById(orderDTO.getUserId());
         BigDecimal totalPrice = BigDecimal.valueOf(0.0);
+        Address address = addressService.getAddressById(orderDTO.getDeliveryAddressID());
 
         Order order = Order.builder()
                 .note(orderDTO.getNote())
+                .deliveryAddress(address.getNameAddress())
                 .orderDate(LocalDateTime.now())
                 .paymentMethod(PaymentMethod.valueOf(orderDTO.getPaymentMethod()))
                 .statusPayment(statusPayment)
