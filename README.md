@@ -115,4 +115,7 @@
   - Fix lại xử lý khi thêm sản phẩm đã có trong giỏ hàng
   - Update logic thanh toán trực tiếp
   - Update lại API liên quan đến user.
+ 
+- **Ngày 16/11/2024**
+  - Hoàn thành cơ bản đợi FE
 
