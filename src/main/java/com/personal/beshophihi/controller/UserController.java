@@ -1,5 +1,6 @@
 package com.personal.beshophihi.controller;
 
+import com.personal.beshophihi.dto.LoginDTO;
 import com.personal.beshophihi.dto.ResponseMessage;
 import com.personal.beshophihi.dto.UserDTO;
 import com.personal.beshophihi.service.UserService;
@@ -34,6 +35,15 @@ public class UserController {
                         .data(userService.getUserById(id))
                         .build(),
                 HttpStatus.OK);
+    }
+    @GetMapping("/username/{username}")
+    public ResponseEntity<ResponseMessage> doGetByUsername(@PathVariable String username) {
+        return new ResponseEntity<>(ResponseMessage.builder()
+                .status("TRUE")
+                .message("Fetched username successfully.")
+                .data(userService.getUserByUserName(username))
+                .code(HttpStatus.OK.value())
+                .build(), HttpStatus.OK);
     }
 
     @PostMapping

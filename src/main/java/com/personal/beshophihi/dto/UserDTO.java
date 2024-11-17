@@ -30,7 +30,7 @@ public class UserDTO {
     private int gender;
     private String username;
     private String password;
-    @JsonFormat(pattern = "MM-dd-yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @JsonProperty("birth-date")
     private Date birthDate;
     private String address;

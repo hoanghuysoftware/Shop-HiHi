@@ -25,6 +25,16 @@ public class ShoppingCartController {
                         .build(),
                 HttpStatus.OK);
     }
+    @GetMapping("/user/{id}")
+    public ResponseEntity<ResponseMessage> doGetShoppingCartByUserId(@PathVariable Long id) {
+        return new ResponseEntity<>(
+                ResponseMessage.builder()
+                        .status("TRUE")
+                        .message("Fetched shopping cart with ID: " + id + " successfully.")
+                        .data(shoppingCartService.getShoppingCartByUserId(id))
+                        .build(),
+                HttpStatus.OK);
+    }
 
     @PostMapping("/{id}")
     public ResponseEntity<ResponseMessage> addProductIntoCart(@PathVariable Long id,

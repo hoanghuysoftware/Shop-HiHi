@@ -21,8 +21,6 @@ public class ReviewController {
     @GetMapping
     public ResponseEntity<ResponseMessage> doGetAllReviewsByProductId(@RequestParam("product-id") Long id
     ) {
-
-
         return new ResponseEntity<>(
                 ResponseMessage.builder()
                         .status("TRUE")

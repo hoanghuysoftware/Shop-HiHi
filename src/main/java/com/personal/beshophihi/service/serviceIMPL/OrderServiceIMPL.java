@@ -14,6 +14,7 @@ import com.personal.beshophihi.service.UserService;
 import com.personal.beshophihi.utils.PaymentMethod;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -49,6 +50,7 @@ public class OrderServiceIMPL implements OrderService {
     }
 
     @Override
+    @Transactional
     public Order createOrder(OrderDTO orderDTO) {
         boolean statusPayment = PaymentMethod.valueOf(orderDTO.getPaymentMethod()) == PaymentMethod.ONLINE;
         Status status = statusService.getStatusById(orderDTO.getStatusId());
@@ -71,9 +73,10 @@ public class OrderServiceIMPL implements OrderService {
             Product product = productRepo.findById(orderDetail.getProductId()).orElseThrow(
                     () -> new EntityNotFound("Not found product with id: "+ orderDetail.getProductId())
             );
+            product.setAvailableQuantity(product.getAvailableQuantity() - orderDetail.getQuantity());
+
             BigDecimal totalPriceItem = product.getSalePrice()
                     .multiply(BigDecimal.valueOf(orderDetail.getQuantity())); // total price item
-
             totalPrice = totalPrice.add(totalPriceItem); // update total price of order
 
             OrderDetail orderDetailItem = OrderDetail.builder()

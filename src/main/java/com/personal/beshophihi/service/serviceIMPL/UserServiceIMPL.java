@@ -7,18 +7,16 @@ import com.personal.beshophihi.model.Address;
 import com.personal.beshophihi.model.Role;
 import com.personal.beshophihi.model.ShoppingCart;
 import com.personal.beshophihi.model.User;
-import com.personal.beshophihi.repository.AddressRepo;
 import com.personal.beshophihi.repository.RoleRepo;
-import com.personal.beshophihi.repository.ShoppingCartRepo;
 import com.personal.beshophihi.repository.UserRepo;
 import com.personal.beshophihi.service.UserService;
 import com.personal.beshophihi.utils.Gender;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -26,8 +24,7 @@ import java.util.List;
 public class UserServiceIMPL implements UserService {
     private final UserRepo userRepo;
     private final RoleRepo roleRepo;
-    private final ShoppingCartRepo shoppingCartRepo;
-    private final AddressRepo addressRepo;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -46,10 +43,16 @@ public class UserServiceIMPL implements UserService {
         if(existsUsername){
             throw new ExistsEntityException("Username already exists !");
         }
-
-        Role role = roleRepo.findById(userDTO.getRoleId()).orElseThrow(
-                () -> new EntityNotFound("Not found role with id: "+ userDTO.getRoleId())
-        );
+        Role role;
+        if (userDTO.getRoleId() == null) {
+            role = roleRepo.findById(2L).orElseThrow(
+                    () -> new EntityNotFound("Not found role with id: "+ userDTO.getRoleId())
+            );
+        }else {
+            role = roleRepo.findById(userDTO.getRoleId()).orElseThrow(
+                    () -> new EntityNotFound("Not found role with id: "+ userDTO.getRoleId())
+            );
+        }
 
         List<Address> addressList = new ArrayList<>();
 
@@ -59,7 +62,7 @@ public class UserServiceIMPL implements UserService {
                 .gender(userDTO.getGender()==1? Gender.FEMALE : Gender.MALE)
                 .isActive(true)
                 .name(userDTO.getName())
-                .password(userDTO.getPassword())
+                .password(passwordEncoder.encode(userDTO.getPassword()))
                 .phoneNumber(userDTO.getPhoneNumber())
                 .username(userDTO.getUsername())
                 .role(role)
@@ -90,5 +93,10 @@ public class UserServiceIMPL implements UserService {
         return userRepo.findById(id).orElseThrow(
                 () -> new EntityNotFound("Not found user with id: "+ id)
         );
+    }
+
+    @Override
+    public User getUserByUserName(String username) {
+        return userRepo.getUserByUsername(username);
     }
 }

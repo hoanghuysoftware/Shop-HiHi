@@ -26,6 +26,7 @@ public class Product {
     private String ROM;
     private String screen;
     private String card;
+    @Lob
     private String description;
     private BigDecimal salePrice;
     private int availableQuantity;
