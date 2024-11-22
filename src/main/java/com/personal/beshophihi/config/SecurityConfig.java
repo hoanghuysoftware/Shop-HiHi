@@ -68,7 +68,8 @@ public class SecurityConfig {
                                         "/api/v1/status-order/**",
                                         "/api/v1/type-product/**",
                                         "/api/v1/user/**",
-                                        "/api/v1/report/**"
+                                        "/api/v1/report/**",
+                                        "/api/v1/payment/**"
                                 ).permitAll()
 
                                 .requestMatchers(HttpMethod.POST,
